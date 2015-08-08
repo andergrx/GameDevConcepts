@@ -11,6 +11,7 @@ import SpriteKit
 
 class Triangle: Shape {
     var width: CGFloat, height: CGFloat
+    //var angle: Float
     
     init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, borderColor: SKColor) {
         self.width = width
@@ -57,4 +58,16 @@ class Triangle: Shape {
         shapeNode.fillColor = fillColor
     }
     
+    func setDirection(angle: Float) {
+       /* let point1 = CGPoint(x: -width/2 * cos(angle), y: -height/2 * sin(angle))
+        let point2 = CGPoint(x: +width/2 * cos(angle), y: -height/2 * sin(angle))
+        let point3 = CGPoint(x: 0, y: +height/2)
+        let points: [CGPoint] = [point1, point2, point3]//, point4]
+        
+        
+        CGPathAddLines(path, nil, points, points.count)
+        shapeNode.path = path
+        shapeNode.a&*/
+        
+    }
 }

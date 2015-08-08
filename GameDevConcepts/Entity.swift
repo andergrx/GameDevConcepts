@@ -27,8 +27,8 @@ public class Entity {
     }
     
     func move (scene: GameScene, x: Float, y: Float) {
-        let moveX = Float(Float(body.x) + x)
-        let moveY = Float(Float(body.y) + y)
+        let moveX = Float(Float(body.shapeNode.position.x) + x)
+        let moveY = Float(Float(body.shapeNode.position.y) + y)
         
         if(CFAbsoluteTimeGetCurrent() - time < ACTION_DURATION) {
             return
@@ -36,27 +36,27 @@ public class Entity {
         
         if moveX > 50.0 && moveX <= Float(scene.size.width-50) {
         
-            body.x = CGFloat(moveX)
-            boundingCircle.x = CGFloat(moveX)
+            body.shapeNode.position.x = CGFloat(moveX)
+            boundingCircle.shapeNode.position.x = CGFloat(moveX)
             
-            let actionX = SKAction.moveToX(body.x, duration: ACTION_DURATION)
+            let actionX = SKAction.moveToX(body.shapeNode.position.x, duration: ACTION_DURATION)
             body.shapeNode.runAction(actionX)
             boundingCircle.shapeNode.runAction(actionX)
         }
         
         if moveY > 50.0 && moveY <= Float(scene.size.height-50) {
                 
-            body.y = CGFloat(moveY)
-            boundingCircle.y = CGFloat(moveY)
+            body.shapeNode.position.y = CGFloat(moveY)
+            boundingCircle.shapeNode.position.y = CGFloat(moveY)
             
-            let actionY = SKAction.moveToY(body.y, duration: ACTION_DURATION)
+            let actionY = SKAction.moveToY(body.shapeNode.position.y, duration: ACTION_DURATION)
             body.shapeNode.runAction(actionY)
             boundingCircle.shapeNode.runAction(actionY)
         }
         
         time = CFAbsoluteTimeGetCurrent()
-        NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
-        NSLog("Node: \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
+        //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
+        NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
     }
 
 }

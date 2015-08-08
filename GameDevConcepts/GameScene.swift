@@ -52,19 +52,20 @@ class GameScene: SKScene {
         entities[entities.count-1].addParent(self)
         
         NSLog("Location: \(location.x), \(location.y)")
-        NSLog("Original Loc: \(entities[entities.count-1].body.x), \(entities[entities.count-1].body.y)")
+        //NSLog("Original Loc: \(entities[entities.count-1].body.x), \(entities[entities.count-1].body.y)")
         NSLog("Original Node Loc: \(entities[entities.count-1].body.shapeNode.position.x), \(entities[entities.count-1].body.shapeNode.position.y)")
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         var sign: Int
-        var random: Float
+        var randomX: Float, randomY: Float
         for entity in entities {
             sign = arc4random_uniform(2) == 1 ? 1 : -1
-            random = Float(sign * Int(arc4random_uniform(7)))
+            randomX = Float(sign * Int(arc4random_uniform(20)))
+            randomY = Float(sign * Int(arc4random_uniform(20)))
             //NSLog("Random: \(random), \(currentTime)")
-            entity.move(self, x: random, y: random)
+            entity.move(self, x: randomX, y: randomY)
         }
     }
 }

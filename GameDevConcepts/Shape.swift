@@ -16,31 +16,15 @@ public class Shape {
     
     var shapeNode: SKShapeNode = SKShapeNode()
     var path = CGPathCreateMutable()
-    
-    var x: CGFloat {
-        didSet {
-            shapeNode.position.x = x
-        }
-        
-    }
-    
-    var y: CGFloat {
-        didSet {
-            shapeNode.position.y = y
-        }
-    }
+
     
     init(x: CGFloat, y: CGFloat, borderColor: SKColor) {
-        self.x = x
-        self.y = y
         shapeNode.position.x = x
         shapeNode.position.y = y
         self.borderColor = borderColor
     }
     
     init(x: CGFloat, y: CGFloat, borderColor: SKColor, fillColor: SKColor) {
-        self.x = x
-        self.y = y
         shapeNode.position.x = x
         shapeNode.position.y = y
         self.borderColor = borderColor

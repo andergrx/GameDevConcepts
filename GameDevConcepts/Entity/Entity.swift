@@ -27,8 +27,8 @@ public class Entity {
     }
     
     func move (scene: GameScene, x: Float, y: Float) {
-        let moveX = Float(Float(body.shapeNode.position.x) + x)
-        let moveY = Float(Float(body.shapeNode.position.y) + y)
+        var moveX: Float = Float(Float(body.shapeNode.position.x) + x)
+        var moveY: Float = Float(Float(body.shapeNode.position.y) + y)
         
         if(CFAbsoluteTimeGetCurrent() - time < ACTION_DURATION) {
             return
@@ -36,27 +36,37 @@ public class Entity {
         
         updateBody(x, y: y)
         
-        if moveX > 50.0 && moveX <= Float(scene.size.width-50) {
+        if moveX <= 50.0 || moveX > Float(scene.size.width-50) {
         
             //body.shapeNode.position.x = CGFloat(moveX)
             //boundingCircle.shapeNode.position.x = CGFloat(moveX)
+            moveX = 0
             
-            let actionX = SKAction.moveToX(CGFloat(moveX), duration: ACTION_DURATION)
-            body.shapeNode.runAction(actionX)
-            boundingCircle.shapeNode.runAction(actionX)
+            //let actionX = SKAction.moveToX(CGFloat(moveX), duration: ACTION_DURATION)
+            //body.shapeNode.runAction(actionX)
+            //boundingCircle.shapeNode.runAction(actionX)
         }
         
-        if moveY > 50.0 && moveY <= Float(scene.size.height-50) {
+        if moveY <= 50.0 || moveY > Float(scene.size.height-50) {
                 
             //body.shapeNode.position.y = CGFloat(moveY)
             //boundingCircle.shapeNode.position.y = CGFloat(moveY)
+            moveY = 0
             
-            let actionY = SKAction.moveToY(CGFloat(moveY), duration: ACTION_DURATION)
-            body.shapeNode.runAction(actionY)
-            boundingCircle.shapeNode.runAction(actionY)
+            //let actionY = SKAction.moveToY(CGFloat(moveY), duration: ACTION_DURATION)
+            //body.shapeNode.runAction(actionY)
+            //boundingCircle.shapeNode.runAction(actionY)
+        }
+        
+        NSLog("mx,my: \(moveX,moveY)")
+        if moveX != 0 && moveY != 0 {
+            let action = SKAction.moveTo(CGPoint(x: CGFloat(moveX),y: CGFloat(moveY)), duration: ACTION_DURATION)
+            body.shapeNode.runAction(action)
+            boundingCircle.shapeNode.runAction(action)
         }
         
         time = CFAbsoluteTimeGetCurrent()
+        
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
         //NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
     }

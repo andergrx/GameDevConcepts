@@ -30,6 +30,7 @@ public class Circle: Shape {
     }
     
     private func buildShape(borderColor: SKColor) {
+        let path = CGPathCreateMutable()
         CGPathAddArc(path,nil,0,0,radius,CGFloat(0),CGFloat(M_PI*2),true)
         shapeNode.path = path
         shapeNode.strokeColor = borderColor

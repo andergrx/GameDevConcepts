@@ -44,7 +44,7 @@ class Triangle: Shape {
         let point3 = CGPoint(x: 0, y: +height/2)
         let points: [CGPoint] = [point1, point2, point3]//, point4]
 
-        
+        let path = CGPathCreateMutable()
         CGPathAddLines(path, nil, points, points.count)
         shapeNode.path = path
         shapeNode.strokeColor = borderColor
@@ -58,16 +58,37 @@ class Triangle: Shape {
         shapeNode.fillColor = fillColor
     }
     
-    func setDirection(angle: Float) {
-       /* let point1 = CGPoint(x: -width/2 * cos(angle), y: -height/2 * sin(angle))
-        let point2 = CGPoint(x: +width/2 * cos(angle), y: -height/2 * sin(angle))
-        let point3 = CGPoint(x: 0, y: +height/2)
+    func buildShape(angle: Float) {
+        
+        let m1: Float = cos(angle)
+        let m2: Float = -sin(angle)
+        let m3: Float = sin(angle)
+        //let rotationMatrix: [Float] = [m1, m2, m3, m1]
+        
+        var xp = [Float](count: 3, repeatedValue: 0.0)
+        var yp = [Float](count: 3, repeatedValue: 0.0)
+        
+        xp[0] = Float(-width)/2 * m1 + Float(-height)/2 * m3
+        yp[0] = Float(-width)/2 * m2 + Float(-height)/2 * m1
+        
+        xp[1] = Float(width)/2 * m1 + Float(-height)/2 * m3
+        yp[1] = Float(width)/2 * m2 + Float(-height)/2 * m1
+
+        xp[2] = Float(height)/2 * m3
+        yp[2] = Float(height)/2 * m1
+        
+        let point1 = CGPoint(x: CGFloat(xp[0]), y: CGFloat(yp[0]))
+        let point2 = CGPoint(x: CGFloat(xp[1]), y: CGFloat(yp[1]))
+        let point3 = CGPoint(x: CGFloat(xp[2]), y: CGFloat(yp[2]))
         let points: [CGPoint] = [point1, point2, point3]//, point4]
         
-        
+        let path = CGPathCreateMutable()
         CGPathAddLines(path, nil, points, points.count)
         shapeNode.path = path
-        shapeNode.a&*/
+        shapeNode.strokeColor = borderColor
+        shapeNode.lineWidth = 1.0
+        
+        //NSLog("Angle: \(angle), x1,y1: \(xp[0]),\(yp[0]), x2,y2: \(xp[1]),\(yp[1]), x3,y3: \(xp[2]),\(yp[2])")
         
     }
 }

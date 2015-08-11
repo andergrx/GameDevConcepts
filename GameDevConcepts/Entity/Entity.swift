@@ -12,9 +12,9 @@ import SpriteKit
 public class Entity {
     let body: Triangle
     var boundingCircle: Circle
-    var time: CFAbsoluteTime = 0
+    var time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
     
-    let ACTION_DURATION = 0.2
+    let ACTION_DURATION = 2.0
     
     init(x: CGFloat, y: CGFloat, color: SKColor) {
         body = Triangle(x: x, y: y, width: 30, height: 50, borderColor: color, fillColor: color)
@@ -34,29 +34,39 @@ public class Entity {
             return
         }
         
+        updateBody(x, y: y)
+        
         if moveX > 50.0 && moveX <= Float(scene.size.width-50) {
         
-            body.shapeNode.position.x = CGFloat(moveX)
-            boundingCircle.shapeNode.position.x = CGFloat(moveX)
+            //body.shapeNode.position.x = CGFloat(moveX)
+            //boundingCircle.shapeNode.position.x = CGFloat(moveX)
             
-            let actionX = SKAction.moveToX(body.shapeNode.position.x, duration: ACTION_DURATION)
+            let actionX = SKAction.moveToX(CGFloat(moveX), duration: ACTION_DURATION)
             body.shapeNode.runAction(actionX)
             boundingCircle.shapeNode.runAction(actionX)
         }
         
         if moveY > 50.0 && moveY <= Float(scene.size.height-50) {
                 
-            body.shapeNode.position.y = CGFloat(moveY)
-            boundingCircle.shapeNode.position.y = CGFloat(moveY)
+            //body.shapeNode.position.y = CGFloat(moveY)
+            //boundingCircle.shapeNode.position.y = CGFloat(moveY)
             
-            let actionY = SKAction.moveToY(body.shapeNode.position.y, duration: ACTION_DURATION)
+            let actionY = SKAction.moveToY(CGFloat(moveY), duration: ACTION_DURATION)
             body.shapeNode.runAction(actionY)
             boundingCircle.shapeNode.runAction(actionY)
         }
         
         time = CFAbsoluteTimeGetCurrent()
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
-        NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
+        //NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
+    }
+    
+    func updateBody(x: Float, y: Float) {
+        let angle: Float = atan2(y,x)
+        body.buildShape(angle)
+
+        NSLog("x,y: \(x,y), angle: \(180 * angle / Float(M_PI))")
+        
     }
 
 }

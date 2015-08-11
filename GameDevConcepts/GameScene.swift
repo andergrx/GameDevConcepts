@@ -56,16 +56,29 @@ class GameScene: SKScene {
         NSLog("Original Node Loc: \(entities[entities.count-1].body.shapeNode.position.x), \(entities[entities.count-1].body.shapeNode.position.y)")
     }
     
+    override func keyDown(theEvent: NSEvent) {
+        NSLog("Key: \(theEvent.charactersIgnoringModifiers), \(theEvent.keyCode)")
+        
+        var key = theEvent.charactersIgnoringModifiers!
+        //var a =
+        
+        if theEvent.keyCode == 0 {
+           NSLog("A")
+       }
+    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        var sign: Int
+        var sign1: Int, sign2: Int
         var randomX: Float, randomY: Float
         for entity in entities {
-            sign = arc4random_uniform(2) == 1 ? 1 : -1
-            randomX = Float(sign * Int(arc4random_uniform(20)))
-            randomY = Float(sign * Int(arc4random_uniform(20)))
+            sign1 = arc4random_uniform(2) == 1 ? 1 : -1
+            randomX = Float(sign1 * Int(arc4random_uniform(20)))
+            sign2 = arc4random_uniform(2) == 1 ? 1 : -1
+            randomY = Float(sign2 * Int(arc4random_uniform(20)))
             //NSLog("Random: \(random), \(currentTime)")
             entity.move(self, x: randomX, y: randomY)
         }
+        
     }
 }

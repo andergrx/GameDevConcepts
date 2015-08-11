@@ -15,7 +15,7 @@ public class Shape {
     var fillColor: SKColor?
     
     var shapeNode: SKShapeNode = SKShapeNode()
-    var path = CGPathCreateMutable()
+    //var path = CGPathCreateMutable()
 
     
     init(x: CGFloat, y: CGFloat, borderColor: SKColor) {

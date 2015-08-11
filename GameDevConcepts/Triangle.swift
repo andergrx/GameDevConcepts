@@ -39,9 +39,9 @@ class Triangle: Shape {
         CGPathMoveToPoint(path, nil, x + width / 2, y+height)
         CGPathMoveToPoint(path, nil, x, y)*/
         
-        let point1 = CGPoint(x: -width/2, y: -height/2)
-        let point2 = CGPoint(x: +width/2, y: -height/2)
-        let point3 = CGPoint(x: 0, y: +height/2)
+        let point1 = CGPoint(x: -height/2, y: -width/2)
+        let point2 = CGPoint(x: -height/2, y: +width/2)
+        let point3 = CGPoint(x: height/2, y: 0)
         let points: [CGPoint] = [point1, point2, point3]//, point4]
 
         let path = CGPathCreateMutable()
@@ -68,14 +68,14 @@ class Triangle: Shape {
         var xp = [Float](count: 3, repeatedValue: 0.0)
         var yp = [Float](count: 3, repeatedValue: 0.0)
         
-        xp[0] = Float(-width)/2 * m1 + Float(-height)/2 * m3
-        yp[0] = Float(-width)/2 * m2 + Float(-height)/2 * m1
+        xp[0] = Float(-height)/2 * m1 + Float(-width)/2 * m2
+        yp[0] = Float(-height)/2 * m3 + Float(-width)/2 * m1
         
-        xp[1] = Float(width)/2 * m1 + Float(-height)/2 * m3
-        yp[1] = Float(width)/2 * m2 + Float(-height)/2 * m1
+        xp[1] = Float(-height)/2 * m1 + Float(width)/2 * m2
+        yp[1] = Float(-height)/2 * m3 + Float(width)/2 * m1
 
-        xp[2] = Float(height)/2 * m3
-        yp[2] = Float(height)/2 * m1
+        xp[2] = Float(height)/2 * m1
+        yp[2] = Float(height)/2 * m3
         
         let point1 = CGPoint(x: CGFloat(xp[0]), y: CGFloat(yp[0]))
         let point2 = CGPoint(x: CGFloat(xp[1]), y: CGFloat(yp[1]))

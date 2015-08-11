@@ -14,7 +14,7 @@ public class Entity {
     var boundingCircle: Circle
     var time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
     
-    let ACTION_DURATION = 2.0
+    let ACTION_DURATION = 0.9
     
     init(x: CGFloat, y: CGFloat, color: SKColor) {
         body = Triangle(x: x, y: y, width: 30, height: 50, borderColor: color, fillColor: color)
@@ -38,27 +38,15 @@ public class Entity {
         
         if moveX <= 50.0 || moveX > Float(scene.size.width-50) {
         
-            //body.shapeNode.position.x = CGFloat(moveX)
-            //boundingCircle.shapeNode.position.x = CGFloat(moveX)
             moveX = 0
-            
-            //let actionX = SKAction.moveToX(CGFloat(moveX), duration: ACTION_DURATION)
-            //body.shapeNode.runAction(actionX)
-            //boundingCircle.shapeNode.runAction(actionX)
         }
         
         if moveY <= 50.0 || moveY > Float(scene.size.height-50) {
-                
-            //body.shapeNode.position.y = CGFloat(moveY)
-            //boundingCircle.shapeNode.position.y = CGFloat(moveY)
-            moveY = 0
             
-            //let actionY = SKAction.moveToY(CGFloat(moveY), duration: ACTION_DURATION)
-            //body.shapeNode.runAction(actionY)
-            //boundingCircle.shapeNode.runAction(actionY)
+            moveY = 0
         }
         
-        NSLog("mx,my: \(moveX,moveY)")
+        //NSLog("mx,my: \(moveX,moveY)")
         if moveX != 0 && moveY != 0 {
             let action = SKAction.moveTo(CGPoint(x: CGFloat(moveX),y: CGFloat(moveY)), duration: ACTION_DURATION)
             body.shapeNode.runAction(action)

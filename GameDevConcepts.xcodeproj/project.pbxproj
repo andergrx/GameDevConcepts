@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C01870251B79858A006706F5 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870241B79858A006706F5 /* Entity.swift */; };
+		C01870281B7ADFCB006706F5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870271B7ADFCB006706F5 /* Extensions.swift */; };
 		C0D809C31B7537BB006CE02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C21B7537BB006CE02E /* AppDelegate.swift */; };
 		C0D809C51B7537BB006CE02E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C41B7537BB006CE02E /* GameScene.swift */; };
 		C0D809C71B7537BB006CE02E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C0D809C61B7537BB006CE02E /* GameScene.sks */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		C01870241B79858A006706F5 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = Entity/Entity.swift; sourceTree = "<group>"; };
+		C01870271B7ADFCB006706F5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Extensions/Extensions.swift; sourceTree = "<group>"; };
 		C0D809BD1B7537BB006CE02E /* GameDevConcepts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameDevConcepts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D809C11B7537BB006CE02E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0D809C21B7537BB006CE02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
+		C01870261B7ADF5B006706F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C01870271B7ADFCB006706F5 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		C0D809B41B7537BB006CE02E = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 		C0D809BF1B7537BB006CE02E /* GameDevConcepts */ = {
 			isa = PBXGroup;
 			children = (
+				C01870261B7ADF5B006706F5 /* Extensions */,
 				C01870231B79854D006706F5 /* Entity */,
 				C0D809E11B753837006CE02E /* Shapes */,
 				C0D809C21B7537BB006CE02E /* AppDelegate.swift */,
@@ -246,6 +257,7 @@
 				C0D809C31B7537BB006CE02E /* AppDelegate.swift in Sources */,
 				C0D809E31B75386B006CE02E /* Circle.swift in Sources */,
 				C0D809E51B7580FE006CE02E /* Triangle.swift in Sources */,
+				C01870281B7ADFCB006706F5 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C01870251B79858A006706F5 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870241B79858A006706F5 /* Entity.swift */; };
 		C01870281B7ADFCB006706F5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870271B7ADFCB006706F5 /* Extensions.swift */; };
+		C018702A1B7C3F26006706F5 /* uyen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C01870291B7C3F26006706F5 /* uyen.jpg */; };
 		C0D809C31B7537BB006CE02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C21B7537BB006CE02E /* AppDelegate.swift */; };
 		C0D809C51B7537BB006CE02E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C41B7537BB006CE02E /* GameScene.swift */; };
 		C0D809C71B7537BB006CE02E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C0D809C61B7537BB006CE02E /* GameScene.sks */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		C01870241B79858A006706F5 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = Entity/Entity.swift; sourceTree = "<group>"; };
 		C01870271B7ADFCB006706F5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Extensions/Extensions.swift; sourceTree = "<group>"; };
+		C01870291B7C3F26006706F5 /* uyen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = uyen.jpg; path = res/uyen.jpg; sourceTree = "<group>"; };
 		C0D809BD1B7537BB006CE02E /* GameDevConcepts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameDevConcepts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D809C11B7537BB006CE02E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0D809C21B7537BB006CE02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		C0D809C01B7537BB006CE02E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C01870291B7C3F26006706F5 /* uyen.jpg */,
 				C0D809C11B7537BB006CE02E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C018702A1B7C3F26006706F5 /* uyen.jpg in Resources */,
 				C0D809C71B7537BB006CE02E /* GameScene.sks in Resources */,
 				C0D809C91B7537BB006CE02E /* Images.xcassets in Resources */,
 				C0D809CC1B7537BB006CE02E /* MainMenu.xib in Resources */,

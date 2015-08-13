@@ -71,9 +71,9 @@ public class Entity {
             
             animationState = Animation.Rotating
             time = CFAbsoluteTimeGetCurrent()
-            
+            rotating(animationX,y: animationY)
         case Animation.Rotating:
-            rotating()
+            //rotating()
             
             if CFAbsoluteTimeGetCurrent() - time >= ROTATE {
                 animationState = Animation.MoveSetup
@@ -97,10 +97,12 @@ public class Entity {
         NSLog(animationState.toString())
     }
     
-    func rotating() {
-        
-        body.buildShape(currentAngle)
-        currentAngle += incAngle
+    func rotating(x: Float, y: Float) {
+        let rotateAngle = atan2(y,x)
+        let action = SKAction.rotateByAngle(CGFloat(rotateAngle-currentAngle), duration:0.9)
+        body.shapeNode.runAction(action)
+        //body.buildShape(currentAngle)
+        currentAngle = rotateAngle
         
        // NSLog("rotationAngle: \(180 * rotationAngle / Float(M_PI))")
        // NSLog("incAngle: \(180 * incAngle / Float(M_PI)), currentAngle: \(180 * currentAngle / Float(M_PI))")

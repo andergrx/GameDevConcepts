@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     var entities = [Entity]()
+    var image: SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -23,6 +24,12 @@ class GameScene: SKScene {
         
         //entities.append(Entity(x: 100, y: 100, color: SKColor.purpleColor()))
         //entities[entities.count-1].addParent(self)
+        self.backgroundColor = NSColor.blackColor()
+
+        //image = SKSpriteNode(imageNamed: "uyen.jpg")
+        //image.size = self.frame.size
+        //image.position = CGPointMake(self.size.width / 2, self.size.height / 2)
+        //self.addChild(image)
         
     }
     

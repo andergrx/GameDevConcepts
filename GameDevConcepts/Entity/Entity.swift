@@ -10,16 +10,19 @@ import Cocoa
 import SpriteKit
 
 enum Animation {
-    case Initialize
+    case RotateSetup
     case Rotating
+    case MoveSetup
     case Moving
     
     func toString() -> String {
         switch self {
-        case Initialize:
-            return "Initialize"
+        case RotateSetup:
+            return "RotateSetup"
         case Rotating:
             return "Rotating"
+        case MoveSetup:
+            return "MoveSetup"
         case Moving:
             return "Moving"
         default:
@@ -35,16 +38,15 @@ public class Entity {
     var currentAngle: Float = 0.0
     var rotationAngle: Float = 0.0
     var incAngle: Float = 0.0
-    var rotateToAngle: Float = 0.0
     
     var animationX: Float = 0.0
     var animationY: Float = 0.0
     
-    var animationState = Animation.Initialize
+    var animationState = Animation.RotateSetup
     var hadAction: Bool = false
     
     let ACTION_DURATION = 0.9
-    let ROTATE: Float = 0.8
+    let ROTATE = 0.8
     
     init(x: CGFloat, y: CGFloat, color: SKColor) {
         body = Triangle(x: x, y: y, width: 30, height: 50, borderColor: color, fillColor: color)
@@ -61,22 +63,32 @@ public class Entity {
         
         switch animationState {
             
-        case Animation.Initialize:
-            rotating(x: x, y: y)
+        case Animation.RotateSetup:
+            animationX = x
+            animationY = y
+            
+            rotationAngle = atan2(y,x) - currentAngle
+            incAngle = rotationAngle / (60 * Float(ROTATE))
+            
             animationState = Animation.Rotating
+            time = CFAbsoluteTimeGetCurrent()
             
         case Animation.Rotating:
-            if !rotating(x: x, y: y) {
-
-                animationX = x
-                animationY = y
-                
-                currentAngle = atan2(y,x)
-            }
+            rotating()
             
-        case Animation.Moving:
+            if CFAbsoluteTimeGetCurrent() - time >= ROTATE {
+                animationState = Animation.MoveSetup
+            }
+           // NSLog("\nnow: \(now), time: \(time)")
+            
+        case Animation.MoveSetup:
             move(scene, x: animationX, y: animationY)
             animationState = Animation.Moving
+            
+        case Animation.Moving:
+            if CFAbsoluteTimeGetCurrent() - time >= ACTION_DURATION {
+                animationState = Animation.RotateSetup
+            }
             
         default:
             return
@@ -85,17 +97,18 @@ public class Entity {
         NSLog(animationState.toString())
     }
     
-    func move (scene: GameScene, x: Float, y: Float) {
+    func rotating() {
         
-        if CFAbsoluteTimeGetCurrent() - time < ACTION_DURATION {
-            return
-        }
-
-        if hadAction {
-            animationState = Animation.Rotating
-            hadAction == false
-            return
-        }
+        body.buildShape(currentAngle)
+        rotationAngle -= incAngle
+        currentAngle += incAngle
+        
+        NSLog("rotationAngle: \(180 * rotationAngle / Float(M_PI))")
+        NSLog("incAngle: \(180 * incAngle / Float(M_PI)), currentAngle: \(180 * currentAngle / Float(M_PI))")
+        
+    }
+    
+    func move (scene: GameScene, x: Float, y: Float) {
         
         var moveX: Float = body.shapeNode.position.x + x
         var moveY: Float = body.shapeNode.position.y + y
@@ -117,33 +130,8 @@ public class Entity {
             hadAction = true
         }
         
-        time = CFAbsoluteTimeGetCurrent()
-        
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
         NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
-    }
-    
-    func rotating(#x: Float, y: Float) -> Bool {
-        
-        if rotationAngle <= 0 {
-            rotationAngle = atan2(y,x) - currentAngle
-            incAngle = rotationAngle / (60 * ROTATE)
-            rotateToAngle = currentAngle
-        }
-        
-        body.buildShape(rotateToAngle)
-        rotationAngle -= incAngle
-        rotateToAngle += incAngle
-        
-        if rotationAngle <= 0 {
-            animationState = Animation.Moving
-            return false
-        }
-
-        NSLog("x,y: \(x,y), angle: \(180 * rotationAngle / Float(M_PI))")
-        NSLog("incAngle: \(180 * incAngle / Float(M_PI)), rotateToAngle: \(180 * rotateToAngle / Float(M_PI))")
-        
-        return true
     }
 
 

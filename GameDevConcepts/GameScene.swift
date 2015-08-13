@@ -73,9 +73,9 @@ class GameScene: SKScene {
         var randomX: Float, randomY: Float
         for entity in entities {
             sign1 = arc4random_uniform(2) == 1 ? 1 : -1
-            randomX = Float(sign1 * Int(arc4random_uniform(20)))
+            randomX = Float(sign1 * Int(arc4random_uniform(40)))
             sign2 = arc4random_uniform(2) == 1 ? 1 : -1
-            randomY = Float(sign2 * Int(arc4random_uniform(20)))
+            randomY = Float(sign2 * Int(arc4random_uniform(40)))
             //NSLog("Random: \(random), \(currentTime)")
             entity.animate(self, x: randomX, y: randomY)
         }

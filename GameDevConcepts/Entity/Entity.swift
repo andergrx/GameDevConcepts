@@ -67,8 +67,7 @@ public class Entity {
             animationX = x
             animationY = y
             
-            rotationAngle = atan2(y,x) - currentAngle
-            incAngle = rotationAngle / (60 * Float(ROTATE))
+            incAngle = (atan2(y,x) - currentAngle) / (60 * Float(ROTATE))
             
             animationState = Animation.Rotating
             time = CFAbsoluteTimeGetCurrent()
@@ -84,6 +83,7 @@ public class Entity {
         case Animation.MoveSetup:
             move(scene, x: animationX, y: animationY)
             animationState = Animation.Moving
+            time = CFAbsoluteTimeGetCurrent()
             
         case Animation.Moving:
             if CFAbsoluteTimeGetCurrent() - time >= ACTION_DURATION {
@@ -100,11 +100,10 @@ public class Entity {
     func rotating() {
         
         body.buildShape(currentAngle)
-        rotationAngle -= incAngle
         currentAngle += incAngle
         
-        NSLog("rotationAngle: \(180 * rotationAngle / Float(M_PI))")
-        NSLog("incAngle: \(180 * incAngle / Float(M_PI)), currentAngle: \(180 * currentAngle / Float(M_PI))")
+       // NSLog("rotationAngle: \(180 * rotationAngle / Float(M_PI))")
+       // NSLog("incAngle: \(180 * incAngle / Float(M_PI)), currentAngle: \(180 * currentAngle / Float(M_PI))")
         
     }
     
@@ -131,7 +130,7 @@ public class Entity {
         }
         
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
-        NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
+       // NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
     }
 
 

@@ -10,21 +10,15 @@ import Cocoa
 import SpriteKit
 
 enum Animation {
-    case RotateSetup
-    case Rotating
-    case MoveSetup
-    case Moving
+    case Initiate
+    case InProgress
     
     func toString() -> String {
         switch self {
-        case RotateSetup:
-            return "RotateSetup"
-        case Rotating:
-            return "Rotating"
-        case MoveSetup:
-            return "MoveSetup"
-        case Moving:
-            return "Moving"
+        case Initiate:
+            return "Initiate"
+        case InProgress:
+            return "InProgress"
         default:
             return ""
         }
@@ -34,14 +28,15 @@ enum Animation {
 public class Entity {
     let body: Triangle
     var boundingCircle: Circle
-    var time: CFAbsoluteTime = CFAbsoluteTimeGetCurrent()
     var currentAngle: Float = 0.0
     
     var animationX: Float = 0.0
     var animationY: Float = 0.0
     
-    var animationState = Animation.RotateSetup
+    var animationState = Animation.Initiate
     
+    var rotateAction: SKAction!
+    var moveAction: SKAction?
     let ACTION_DURATION = 0.9
     let ROTATE = 0.8
     
@@ -60,28 +55,26 @@ public class Entity {
         
         switch animationState {
             
-        case Animation.RotateSetup:
+        case Animation.Initiate:
             animationX = x
             animationY = y
             
             //incAngle = (atan2(y,x) - currentAngle) / (60 * Float(ROTATE))
             rotate(animationX, y: animationY)
-            animationState = Animation.Rotating
-            time = CFAbsoluteTimeGetCurrent()
-            
-        case Animation.Rotating:
-            if CFAbsoluteTimeGetCurrent() - time >= ROTATE {
-                animationState = Animation.MoveSetup
+            move(scene, x: animationX, y: animationY)
+
+            if let mAction = moveAction {
+                body.shapeNode.runAction(SKAction.sequence([rotateAction, mAction]))
+                boundingCircle.shapeNode.runAction(SKAction.sequence([rotateAction, mAction]))
+            } else {
+                body.shapeNode.runAction(rotateAction)
             }
             
-        case Animation.MoveSetup:
-            move(scene, x: animationX, y: animationY)
-            animationState = Animation.Moving
-            time = CFAbsoluteTimeGetCurrent()
-            
-        case Animation.Moving:
-            if CFAbsoluteTimeGetCurrent() - time >= ACTION_DURATION {
-                animationState = Animation.RotateSetup
+            animationState = Animation.InProgress
+
+        case Animation.InProgress:
+            if !body.shapeNode.hasActions() {
+                animationState = Animation.Initiate
             }
             
         default:
@@ -93,8 +86,7 @@ public class Entity {
     
     func rotate(x: Float, y: Float) {
         let rotateAngle = atan2(y,x)
-        let action = SKAction.rotateByAngle(CGFloat(rotateAngle-currentAngle), duration:0.9)
-        body.shapeNode.runAction(action)
+        rotateAction = SKAction.rotateByAngle(CGFloat(rotateAngle-currentAngle), duration:0.9)
        
         currentAngle = rotateAngle
         
@@ -118,9 +110,9 @@ public class Entity {
         }
         
         if moveX != 0 && moveY != 0 {
-            let action = SKAction.moveTo(CGPoint(x: CGFloat(moveX),y: CGFloat(moveY)), duration: ACTION_DURATION)
-            body.shapeNode.runAction(action)
-            boundingCircle.shapeNode.runAction(action)
+            moveAction = SKAction.moveTo(CGPoint(x: CGFloat(moveX),y: CGFloat(moveY)), duration: ACTION_DURATION)
+        } else {
+            moveAction = nil
         }
         
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")

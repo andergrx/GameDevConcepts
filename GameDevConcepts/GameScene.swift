@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     var entities = [Entity]()
+    var entityIndex: Int = 0;
     var image: SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
@@ -78,14 +79,19 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
         var sign1: Int, sign2: Int
         var randomX: Float, randomY: Float
-        for entity in entities {
-            sign1 = arc4random_uniform(2) == 1 ? 1 : -1
-            randomX = Float(sign1 * Int(arc4random_uniform(40)))
-            sign2 = arc4random_uniform(2) == 1 ? 1 : -1
-            randomY = Float(sign2 * Int(arc4random_uniform(40)))
-            //NSLog("Random: \(random), \(currentTime)")
-            entity.animate(self, x: randomX, y: randomY)
+
+        sign1 = arc4random_uniform(2) == 1 ? 1 : -1
+        randomX = Float(sign1 * Int(arc4random_uniform(40)))
+        sign2 = arc4random_uniform(2) == 1 ? 1 : -1
+        randomY = Float(sign2 * Int(arc4random_uniform(40)))
+
+        if !entities.isEmpty {
+            entities[entityIndex].animate(self, x: randomX, y: randomY)
+            entityIndex++
+            entityIndex %= entities.count
         }
+        
+        //NSLog("Index: \(entityIndex)")
         
     }
 }

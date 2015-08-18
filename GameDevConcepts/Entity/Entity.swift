@@ -81,7 +81,7 @@ public class Entity {
             return
         }
         
-        NSLog(animationState.toString())
+        //NSLog(animationState.toString())
     }
     
     func rotate(x: Float, y: Float) {

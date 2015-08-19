@@ -10,15 +10,15 @@
 		C01870251B79858A006706F5 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870241B79858A006706F5 /* Entity.swift */; };
 		C01870281B7ADFCB006706F5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01870271B7ADFCB006706F5 /* Extensions.swift */; };
 		C018702A1B7C3F26006706F5 /* uyen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C01870291B7C3F26006706F5 /* uyen.jpg */; };
+		C05EAB401B842CEB00C85F15 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05EAB3D1B842CEB00C85F15 /* Circle.swift */; };
+		C05EAB411B842CEB00C85F15 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05EAB3E1B842CEB00C85F15 /* Shape.swift */; };
+		C05EAB421B842CEB00C85F15 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05EAB3F1B842CEB00C85F15 /* Triangle.swift */; };
 		C0D809C31B7537BB006CE02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C21B7537BB006CE02E /* AppDelegate.swift */; };
 		C0D809C51B7537BB006CE02E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809C41B7537BB006CE02E /* GameScene.swift */; };
 		C0D809C71B7537BB006CE02E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C0D809C61B7537BB006CE02E /* GameScene.sks */; };
 		C0D809C91B7537BB006CE02E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D809C81B7537BB006CE02E /* Images.xcassets */; };
 		C0D809CC1B7537BB006CE02E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0D809CA1B7537BB006CE02E /* MainMenu.xib */; };
 		C0D809D81B7537BB006CE02E /* GameDevConceptsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809D71B7537BB006CE02E /* GameDevConceptsTests.swift */; };
-		C0D809E31B75386B006CE02E /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809E21B75386B006CE02E /* Circle.swift */; };
-		C0D809E51B7580FE006CE02E /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809E41B7580FE006CE02E /* Triangle.swift */; };
-		C0D809E71B758120006CE02E /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D809E61B758120006CE02E /* Shape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,9 @@
 		C01870241B79858A006706F5 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = Entity/Entity.swift; sourceTree = "<group>"; };
 		C01870271B7ADFCB006706F5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Extensions/Extensions.swift; sourceTree = "<group>"; };
 		C01870291B7C3F26006706F5 /* uyen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = uyen.jpg; path = res/uyen.jpg; sourceTree = "<group>"; };
+		C05EAB3D1B842CEB00C85F15 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Circle.swift; path = Shapes/Circle.swift; sourceTree = "<group>"; };
+		C05EAB3E1B842CEB00C85F15 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shape.swift; path = Shapes/Shape.swift; sourceTree = "<group>"; };
+		C05EAB3F1B842CEB00C85F15 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Triangle.swift; path = Shapes/Triangle.swift; sourceTree = "<group>"; };
 		C0D809BD1B7537BB006CE02E /* GameDevConcepts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameDevConcepts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D809C11B7537BB006CE02E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0D809C21B7537BB006CE02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,9 +48,6 @@
 		C0D809D11B7537BB006CE02E /* GameDevConceptsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameDevConceptsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D809D61B7537BB006CE02E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0D809D71B7537BB006CE02E /* GameDevConceptsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDevConceptsTests.swift; sourceTree = "<group>"; };
-		C0D809E21B75386B006CE02E /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
-		C0D809E41B7580FE006CE02E /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
-		C0D809E61B758120006CE02E /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +147,9 @@
 		C0D809E11B753837006CE02E /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
-				C0D809E21B75386B006CE02E /* Circle.swift */,
-				C0D809E41B7580FE006CE02E /* Triangle.swift */,
-				C0D809E61B758120006CE02E /* Shape.swift */,
+				C05EAB3D1B842CEB00C85F15 /* Circle.swift */,
+				C05EAB3E1B842CEB00C85F15 /* Shape.swift */,
+				C05EAB3F1B842CEB00C85F15 /* Triangle.swift */,
 			);
 			name = Shapes;
 			sourceTree = "<group>";
@@ -255,12 +255,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0D809E71B758120006CE02E /* Shape.swift in Sources */,
+				C05EAB401B842CEB00C85F15 /* Circle.swift in Sources */,
+				C05EAB411B842CEB00C85F15 /* Shape.swift in Sources */,
 				C0D809C51B7537BB006CE02E /* GameScene.swift in Sources */,
 				C01870251B79858A006706F5 /* Entity.swift in Sources */,
 				C0D809C31B7537BB006CE02E /* AppDelegate.swift in Sources */,
-				C0D809E31B75386B006CE02E /* Circle.swift in Sources */,
-				C0D809E51B7580FE006CE02E /* Triangle.swift in Sources */,
+				C05EAB421B842CEB00C85F15 /* Triangle.swift in Sources */,
 				C01870281B7ADFCB006706F5 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -130,6 +130,10 @@ class Entity: SKNode {
     func avoid(angle: Double) {
         boundingCircle.shapeNode.strokeColor = NSColor.redColor()
     }
+    
+    func resetDetection() {
+        boundingCircle.shapeNode.strokeColor = NSColor.whiteColor()
+    }
 
 
 }

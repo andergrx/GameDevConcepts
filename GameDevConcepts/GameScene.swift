@@ -88,7 +88,7 @@ class GameScene: SKScene {
             randomY = Float(sign2 * Int(arc4random_uniform(40)))
 
             entities[entityIndex].animate(self, x: randomX, y: randomY)
-            detectDanger(entities, index: entityIndex)
+            detectDanger(entities)
             
             entityIndex++
             entityIndex %= entities.count
@@ -100,20 +100,26 @@ class GameScene: SKScene {
         
     }
     
-    func detectDanger(e: [Entity], index: Int) {
+    func detectDanger(e: [Entity]) {
         
-        for i in index+1..<e.count {
-            let dx = e[i].body.shapeNode.position.x - e[index].body.shapeNode.position.x
-            let dy = e[i].body.shapeNode.position.y - e[index].body.shapeNode.position.y
-            
-            let distance = sqrt( pow(Double(dx),2) + pow(Double(dy),2) )
-            
-            if distance <= Double(e[i].boundingCircle.radius) * 2 {
-                let angle = Double(atan2(Double(dy), Double(dx))) - M_PI
-                e[index].avoid(angle)
-                e[i].avoid(angle)
+        for i in 0..<e.count {
+            e[i].resetDetection()
+        }
+        
+        for k in 0..<e.count {
+            for i in k+1..<e.count {
+                let dx = e[i].body.shapeNode.position.x - e[k].body.shapeNode.position.x
+                let dy = e[i].body.shapeNode.position.y - e[k].body.shapeNode.position.y
+                
+                let distance = sqrt( pow(Double(dx),2) + pow(Double(dy),2) )
+                
+                if distance <= Double(e[i].boundingCircle.radius+e[k].boundingCircle.radius) {
+                    let angle = Double(atan2(Double(dy), Double(dx))) - M_PI
+                    e[k].avoid(angle)
+                    e[i].avoid(angle)
+                }
+                //NSLog("\ni: \(i)")
             }
-            NSLog("\ni: \(i)")
         }
     }
 }

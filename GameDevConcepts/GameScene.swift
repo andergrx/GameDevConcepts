@@ -57,7 +57,7 @@ class GameScene: SKScene {
         let location = theEvent.locationInNode(self)
         
         entities.append(Entity(x: location.x, y: location.y, color: SKColor.purpleColor()))
-        entities[entities.count-1].addParent(self)
+        self.addChild(entities[entities.count-1])
         
         NSLog("Location: \(location.x), \(location.y)")
         //NSLog("Original Loc: \(entities[entities.count-1].body.x), \(entities[entities.count-1].body.y)")
@@ -74,24 +74,46 @@ class GameScene: SKScene {
            NSLog("A")
        }
     }
-    
+
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        var sign1: Int, sign2: Int
-        var randomX: Float, randomY: Float
-
-        sign1 = arc4random_uniform(2) == 1 ? 1 : -1
-        randomX = Float(sign1 * Int(arc4random_uniform(40)))
-        sign2 = arc4random_uniform(2) == 1 ? 1 : -1
-        randomY = Float(sign2 * Int(arc4random_uniform(40)))
-
+        
         if !entities.isEmpty {
+            var sign1: Int, sign2: Int
+            var randomX: Float, randomY: Float
+
+            sign1 = arc4random_uniform(2) == 1 ? 1 : -1
+            randomX = Float(sign1 * Int(arc4random_uniform(40)))
+            sign2 = arc4random_uniform(2) == 1 ? 1 : -1
+            randomY = Float(sign2 * Int(arc4random_uniform(40)))
+
             entities[entityIndex].animate(self, x: randomX, y: randomY)
+            detectDanger(entities, index: entityIndex)
+            
             entityIndex++
             entityIndex %= entities.count
+            
+            
         }
         
         //NSLog("Index: \(entityIndex)")
         
+    }
+    
+    func detectDanger(e: [Entity], index: Int) {
+        
+        for i in index+1..<e.count {
+            let dx = e[i].body.shapeNode.position.x - e[index].body.shapeNode.position.x
+            let dy = e[i].body.shapeNode.position.y - e[index].body.shapeNode.position.y
+            
+            let distance = sqrt( pow(Double(dx),2) + pow(Double(dy),2) )
+            
+            if distance <= Double(e[i].boundingCircle.radius) * 2 {
+                let angle = Double(atan2(Double(dy), Double(dx))) - M_PI
+                e[index].avoid(angle)
+                e[i].avoid(angle)
+            }
+            NSLog("\ni: \(i)")
+        }
     }
 }

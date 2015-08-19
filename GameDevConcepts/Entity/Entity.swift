@@ -25,7 +25,7 @@ enum Animation {
     }
 }
 
-public class Entity {
+class Entity: SKNode {
     let body: Triangle
     var boundingCircle: Circle
     var currentAngle: Float = 0.0
@@ -43,6 +43,14 @@ public class Entity {
     init(x: CGFloat, y: CGFloat, color: SKColor) {
         body = Triangle(x: x, y: y, width: 30, height: 50, borderColor: color, fillColor: color)
         boundingCircle = Circle(x: x, y: y, radius: 50, borderColor: SKColor.whiteColor())
+        super.init()
+        
+        self.addChild(body.shapeNode)
+        self.addChild(boundingCircle.shapeNode)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func addParent(scene: GameScene) {
@@ -117,6 +125,10 @@ public class Entity {
         
         //NSLog("Body: \(body.x), \(body.y) || \(scene.size.width), \(scene.size.height)")
        // NSLog("Node \(self): \(body.shapeNode.position.x), \(body.shapeNode.position.y)")
+    }
+    
+    func avoid(angle: Double) {
+        boundingCircle.shapeNode.strokeColor = NSColor.redColor()
     }
 
 

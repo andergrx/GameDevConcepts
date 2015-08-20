@@ -87,8 +87,8 @@ class GameScene: SKScene {
             sign2 = arc4random_uniform(2) == 1 ? 1 : -1
             randomY = Float(sign2 * Int(arc4random_uniform(40)))
 
+            detectDanger(entities,entityIndex)
             entities[entityIndex].animate(self, x: randomX, y: randomY)
-            detectDanger(entities)
             
             entityIndex++
             entityIndex %= entities.count
@@ -100,7 +100,7 @@ class GameScene: SKScene {
         
     }
     
-    func detectDanger(e: [Entity]) {
+    func detectDanger(e: [Entity], _ index: Int) {
         
         for i in 0..<e.count {
             e[i].resetDetection()
@@ -114,9 +114,17 @@ class GameScene: SKScene {
                 let distance = sqrt( pow(Double(dx),2) + pow(Double(dy),2) )
                 
                 if distance <= Double(e[i].boundingCircle.radius+e[k].boundingCircle.radius) {
-                    let angle = Double(atan2(Double(dy), Double(dx))) - M_PI
-                    e[k].avoid(angle)
-                    e[i].avoid(angle)
+                    //let angle = Double(atan2(Double(dy), Double(dx))) - M_PI
+                    e[k].alert()
+                    e[i].alert()
+                    
+                    if k == entityIndex {
+                        e[k].avoid(self)
+                    }
+                    
+                    if i == entityIndex {
+                        e[i].avoid(self)
+                    }
                 }
                 //NSLog("\ni: \(i)")
             }
